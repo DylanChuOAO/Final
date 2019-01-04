@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        New York Yankees
+    </title>
+    <style type="text/css">
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        div.iframediv {
+            text-align: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        iframe {
+            margin: 0;
+            padding: 0;
+            width: 60%;
+            height: 750px;
+            border: 0;
+        }
+    </style>
+    <link href="yankees logo.ico" rel="SHORTCUT ICON">
+    <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function start() {
+            document.getElementById("schedule").addEventListener("click", toSchedule);
+            document.getElementById("standing").addEventListener("click", toStanding);
+            document.getElementById("home").addEventListener("click", toHome);
+            document.getElementById("hitters").addEventListener("click", toHitters);
+            document.getElementById("pitchers").addEventListener("click", toPitchers);
+        }
+
+        function toSchedule() {
+            document.getElementById("contentiframe").src = "https://www.mlb.com/yankees/schedule/2018/fullseason";
+        }
+
+        function toStanding(){
+            document.getElementById("contentiframe").src = "standing.html";
+        }
+
+        function toHome() {
+            document.getElementById("contentiframe").src = "index.html";
+        }
+
+        function toHitters(){
+            document.getElementById("contentiframe").src = "player/yankees_hitting.html";
+        }
+
+        function toPitchers(){
+            document.getElementById("contentiframe").src = "player/yankees_pitching.html";
+        }
+
+        
+
+        var isOut = true;
+        $(document).ready(function () {
+            $("#schedule").animate({ opacity: 0, left: "+100px" }, "normal");
+            $("#standing").animate({ opacity: 0, left: "+65px" }, "normal");
+            $("#hitters").animate({ opacity: 0, right: "+75px" }, "normal");
+            $("#pitchers").animate({ opacity: 0, right: "+110px" }, "normal");
+            isOut = true;
+            $("#home").mouseover(function () {
+                if (isOut) {
+
+                    $("#schedule").animate({ opacity: 1, left: "-20px" }, "normal");
+                    $("#standing").animate({ opacity: 1, left: "-10px" }, "normal");
+                    $("#hitters").animate({ opacity: 1, right: "0px" }, "normal");
+                    $("#pitchers").animate({ opacity: 1, right: "-10px" }, "normal");
+                }
+                isOut = false;
+            });
+
+            $("#menuArea").mouseleave(function () {
+                $("#schedule").animate({ opacity: 0, left: "+100px" }, "normal");
+                $("#standing").animate({ opacity: 0, left: "+65px" }, "normal");
+                $("#hitters").animate({ opacity: 0, right: "+75px" }, "normal");
+                $("#pitchers").animate({ opacity: 0, right: "+110px" }, "normal");
+                isOut = true;
+            });
+        });
+
+        window.addEventListener("load", start, false);
+    </script>
+</head>
+
+<body background="stripes background.jpg">
+    <div class="menuArea" id="menuArea" style="text-align:center;">
+        <input class="schedule" type="image" id="schedule" src="schedule.png" alt="Schedule" style="width:150px; height: 150px;"
+            title="賽程表">
+        <input class="standing" type="image" id="standing" src="standing.png" alt="Standing" style="width:150px; height: 150px;"
+            title="戰績/排名">
+        <input class="home" type="image" id="home" src="yankees logo.png" alt="Home" style="width:150px; height: 150px;"
+            title="首頁">
+        <input class="hitters" type="image" id="hitters" src="hitter.png" alt="Player" style="width:150px; height: 150px;"
+            title="打者">
+        <input class="pitchers" type="image" id="pitchers" src="pitcher.png" alt="Facebook" style="width:150px; height: 150px;"
+            title="投手">
+    </div>
+
+    <div class="iframediv">
+        <iframe id="contentiframe" class="content" src="index.html"></iframe>
+    </div>
+</body>
+
+</html>

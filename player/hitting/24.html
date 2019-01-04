@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>hitting</title>
+        <style type = "text/css">
+            table {
+                border: 0;
+                border-collapse: collapse;
+                width: 100%;
+            }
+            td {
+                font-size: 18px;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+                padding: 2px;
+                width: 75px;
+                background-color:white;
+            }
+            th {
+                font-size: 18px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                text-align: center;
+                padding: 4px;
+                width: 75px;
+            }
+            table, td, th { border: 2px solid black; }
+            .parent {
+                background-color:darkblue;
+                color: white;
+            }
+            td.a   {text-decoration:none;
+                  color:deeppink;}
+            tr:nth-child(even) {background-color:lightgray;}
+            .pic_b{width:1500px;
+                   float:left; 
+                   z-index:0;}
+            .pic_a{position:absolute;
+                   border: 2px solid black;
+                   top:336px;
+                   left:8px;
+                   z-index:1;}
+            body { 
+                    background: lightblue; 
+                    }
+        </style>
+        <link href="yankees team logo.png" rel="SHORTCUT ICON">
+        <script src = "jquery-3.3.1.min.js"></script>
+        <script>
+            function start(){
+                var hitting = "https://raw.githubusercontent.com/DylanChuOAO/Yankees/master/yankees_hitting.json";
+                $.getJSON(hitting,function(data){
+                        var idx = 18;
+                        var content = "<tr>"+
+                            "<td class = a >"+data[idx].name+"</td>"+
+                            "<td>"+ data[idx].number +"</td>"+
+                            "<td>"+ data[idx].AB +"</td>"+
+                            "<td>"+ data[idx].H +"</td>"+
+                            "<td>"+ data[idx].HR +"</td>"+
+                            "<td>"+ data[idx].AVG +"</td>"+
+                            "<td>"+ data[idx].OBP +"</td>"+
+                            "<td>"+ data[idx].SLG +"</td>"+
+                            "</tr>";
+                        $("#content").append(content);
+                });
+            }
+            window.addEventListener( "load", start, false );
+        </script>
+    </head>
+    <body>
+        <img class = "pic_b" src="24/B.jpg" >
+        <img class = "pic_a"  src="24/A.jpg" >
+        
+        <table>
+            <thead class="parent">
+                <tr>
+                    <th>Player</th>
+                    <th>Number</th>
+                    <th>AB</th>
+                    <th>H</th>
+                    <th>HR</th>
+                    <th>AVG</th>
+                    <th>OBP</th>
+                    <th>SLG</th>
+                </tr>
+            </thead>
+            <tbody class="child" id="content">
+            </tbody>
+        </table>
+        
+    </body>
+</html>

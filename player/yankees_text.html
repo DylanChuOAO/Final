@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>blank</title>
+        <style type = "text/css">
+            table         { width: 300px;
+                            border-collapse:collapse; 
+                            background-color: lightblue; }
+            table, td, th { border: 1px solid black; 
+                            padding: 4px; }
+            th            { text-align: left; 
+                            color: white;
+                            background-color: darkblue; }
+            tr.oddrow     { background-color: white; }
+        </style>
+        <script src="jquery-3.3.1.min.js"></script>
+        <script>
+            function start(){
+                var i = 0;
+                var pitching = "https://raw.githubusercontent.com/evenchange4/mrt_opendata/master/mrt.json";
+                var hitting = "yankees_hitting.json";
+                $.getJSON(hitting,function(data){
+                   for(var idx in data){
+                        var content = "<tr>"+
+                                    "<td>"+ data[idx].name +"</td>"+
+                                    "<td>"+ data[idx].number +"</td>"+
+                                    "</tr>";
+                        $("#blank1").append(content);
+                   }
+                });
+                
+            }
+            window.addEventListener( "load", start, false );
+        </script>
+    </head>
+    <body>
+        <form action = "#">
+            <div id = "blank1"></div>
+            <div id = "blank2"></div>
+        </form>
+    </body>
+</html>
